@@ -2,15 +2,14 @@
 from argparse import Namespace
 from unittest import TestCase
 
-from mock import MagicMock, patch
+from mock import MagicMock
 
 from logging_toolbox.startup import startup_log, _get_version
 
 
-@patch('logging_toolbox.startup.logger')
 class StartupLogTester(TestCase):
     """The startup_log tester."""
-    def test_invalid_cleaner_function(self, mock_logger):
+    def test_invalid_cleaner_function(self):
         """
         Tests whether the startup log function works even with invalid
         cleaner functions.
@@ -21,9 +20,10 @@ class StartupLogTester(TestCase):
         """
         input_args = Namespace(arg1='1', arg2=2)
         cleaners = {'arg1': lambda v: v + 20}
+        mock_logger = MagicMock()
 
         try:
-            startup_log(input_args, cleaners=cleaners)
+            startup_log(input_args, cleaners=cleaners, logger=mock_logger)
         except Exception:
             self.fail('Startup log failed catching cleaner errors!')
 
