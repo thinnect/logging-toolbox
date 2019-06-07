@@ -2,9 +2,9 @@
 from argparse import Namespace
 from unittest import TestCase
 
-from mock import patch
+from mock import MagicMock, patch
 
-from logging_toolbox.startup import startup_log
+from logging_toolbox.startup import startup_log, _get_version
 
 
 @patch('logging_toolbox.startup.logger')
@@ -29,3 +29,24 @@ class StartupLogTester(TestCase):
 
         mock_logger.info.assert_any_call('%-*s: %s', 5, 'arg1', '1')
         mock_logger.warning.assert_called_once()
+
+class VersionResolverTester(TestCase):
+    """Tests the _get_version function"""
+    def test_not_installed_module(self):
+        """
+        Tests the case when a module does not have a __version__
+        attribute but is not installed. Most likely, this is the module
+        you are currently working on.
+
+        Expected result:
+        * the version is 'UNKNOWN'
+        * No exception is thrown
+        """
+        mock_module = MagicMock(__name__='mock_module')
+
+        try:
+            result = _get_version(mock_module)
+        except Exception:
+            self.fail('The _get_version function threw an exception!')
+
+        self.assertEqual(result, 'UNKNOWN')

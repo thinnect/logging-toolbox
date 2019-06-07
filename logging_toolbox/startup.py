@@ -80,6 +80,9 @@ def _get_version(module):
     except ImportError:
         pass
     else:
-        return pkg_resources.get_distribution(module.__name__).version
+        try:
+            return pkg_resources.get_distribution(module.__name__).version
+        except pkg_resources.DistributionNotFound:
+            pass
 
     return 'UNKNOWN'
