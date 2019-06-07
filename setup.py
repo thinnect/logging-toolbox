@@ -26,7 +26,7 @@ setup(
     packages=find_packages(),
     include_package_data=True, # Use MANIFEST.in for data files
     install_requires=['six'],
-    tests_require=['nose'],
+    tests_require=['nose', 'mock'],
 
     classifiers=[
         'Development Status :: 4 - Beta',
