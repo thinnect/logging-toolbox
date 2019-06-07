@@ -31,6 +31,7 @@ def startup_log(args, critical_modules=(), cleaners=None):
     configuration = vars(args)
 
     if configuration or critical_modules:
+        warnings = []
 
         max_width = max(len(i) for i in chain(configuration.keys(),
                                               critical_modules)) + 1
@@ -56,9 +57,16 @@ def startup_log(args, critical_modules=(), cleaners=None):
         if configuration:
             logger.info('Arguments'.center(total_width, '-'))
             for name, value in configuration.items():
-                sanitized = cleaners.get(name, lambda v: v)(value)
+                try:
+                    sanitized = cleaners.get(name, lambda v: v)(value)
+                except Exception as error:
+                    warnings.append(('Argument %s could not be cleaned: %s',
+                                     name, error))
+                    sanitized = value
                 logger.info('%-*s: %s', max_width, name, sanitized)
         logger.info('=' * total_width)
+        for warning in warnings:
+            logger.warning(*warning)
 
 
 def _get_version(module):
