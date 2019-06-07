@@ -5,10 +5,8 @@ import logging
 from importlib import import_module
 from itertools import chain
 
-logger = logging.getLogger(__name__)
 
-
-def startup_log(args, critical_modules=(), cleaners=None):
+def startup_log(args, critical_modules=(), cleaners=None, logger=None):
     """
     Logs the configuration and dependency versions.
 
@@ -22,9 +20,13 @@ def startup_log(args, critical_modules=(), cleaners=None):
     :param dict[str, types.FunctionType] cleaners: A dictionary
         containing functions to clean configuration values. Usually done
         to hide passwords or other sensitive information.
+    :param logging.Logger logger: The logger to use. Defaults to the
+        logging_toolbox logger.
     :rtype: None
     """
 
+    if logger is None:
+        logger = logging.getLogger(__name__)
     if cleaners is None:
         cleaners = {}
 
