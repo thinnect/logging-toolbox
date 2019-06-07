@@ -24,7 +24,7 @@ class StartupLogTester(TestCase):
 
         try:
             startup_log(input_args, cleaners=cleaners)
-        except Exception as error:
+        except Exception:
             self.fail('Startup log failed catching cleaner errors!')
 
         mock_logger.info.assert_any_call('%-*s: %s', 5, 'arg1', '1')
