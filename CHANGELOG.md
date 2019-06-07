@@ -17,5 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of `logging-toolbox`.
 
-[Unreleased]: https://github.com/thinnect/logging-toolbox/compare/dev...0.1.0
+[Unreleased]: https://github.com/thinnect/logging-toolbox/compare/0.1.0...dev
 [0.1.0]: https://github.com/thinnect/logging-toolbox/tree/0.1.0
