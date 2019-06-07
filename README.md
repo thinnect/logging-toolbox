@@ -1,6 +1,6 @@
-# `logging-toolbelt`
+# `logging-toolbox`
 
-The `logging-toolbelt` module contains useful functions to help the user
+The `logging-toolbox` module contains useful functions to help the user
 with logging recurring things like command-line arguments and dependencies
 on startup.
 
@@ -17,8 +17,8 @@ dependencies and all arguments.
 ```python
 from .utils import get_args, setup_logging
 
-from logging_toolbelt.startup import startup_log
-from logging_toolbelt.utils import clean_url
+from logging_toolbox.startup import startup_log
+from logging_toolbox.utils import clean_url
 
 
 if __name__ == '__main__':
