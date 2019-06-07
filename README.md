@@ -1,5 +1,7 @@
 # `logging-toolbox`
 
+[![Build Status](https://travis-ci.com/thinnect/logging-toolbox.svg?branch=master)](https://travis-ci.com/thinnect/logging-toolbox)
+
 The `logging-toolbox` module contains useful functions to help the user
 with logging recurring things like command-line arguments and dependencies
 on startup.

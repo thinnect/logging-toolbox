@@ -1,4 +1,6 @@
-"""Utility functions used provided by the logging_toolbox module."""
+"""
+Utility functions used provided by the logging_toolbox module.
+"""
 from six.moves.urllib.parse import urlparse, urlunparse
 
 
